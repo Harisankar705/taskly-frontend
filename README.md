@@ -1,54 +1,97 @@
-# React + TypeScript + Vite
+# Taskly Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Taskly Frontend is the user interface for the Taskly application, which provides features for task management and user authentication.
 
-Currently, two official plugins are available:
+## Features
+- User login and registration
+- Task creation, editing, and deletion
+- View and manage tasks
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+- **Framework**: React.js
+- **State Management**: React Context API
+- **Styling**: CSS, TailwindCSS (or your chosen styling method)
+- **Routing**: React Router
+- **HTTP Requests**: Axios for API calls
+- **Environment Management**: Vite (if using Vite as bundler)
 
-## Expanding the ESLint configuration
+## Setup & Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 1. Clone the Repository
+Clone the repository to your local machine:
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+```bash
+git clone https://github.com/harisankar705  /taskly-frontend.git
+cd taskly-frontend
+2. Install Dependencies
+Run the following command to install the necessary dependencies:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+bash
+Copy
+Edit
+npm install
+3. Configure Environment Variables
+Create a .env file in the root of your project and add the following variables:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+ini
+Copy
+Edit
+VITE_BACKEND_URL=https://taskly-backend-ados.onrender.com   # Your backend URL
+This variable stores the URL of your backend API, which will be used for making API requests to your backend.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+4. Running the Development Server
+Start the development server:
+
+bash
+Copy
+Edit
+npm run dev
+This should start your frontend application at http://localhost:5173 (or the port specified in the Vite config).
+
+5. Build and Deploy
+To build the frontend for production, run:
+
+bash
+Copy
+Edit
+npm run build
+You can deploy this build to platforms like Vercel or Netlify. Make sure to configure the environment variables on the deployment platform as well.
+
+6. Troubleshooting
+If you encounter any issues, ensure that:
+
+The backend API is running and accessible.
+
+The .env file is properly configured with the correct backend URL.
+
+The React app is properly configured for production by checking your build settings.
+
+Application Flow
+Login Page: The user logs in with their credentials, receiving a JWT token for authorization.
+
+Task Management: After logging in, users can view, create, update, and delete tasks. The frontend interacts with the backend via API requests.
+
+Deployment
+This frontend application can be deployed using platforms like Vercel or Netlify.
+
+Vercel:
+
+Connect the repository to Vercel.
+
+Add the environment variable VITE_BACKEND_URL with the backend API URL.
+
+Deploy!
+
+Netlify:
+
+Push the app to GitHub, then connect it to Netlify.
+
+Add VITE_BACKEND_URL as an environment variable in the Netlify dashboard.
+
+Deploy!
+
+License
+MIT License. See LICENSE for more information.
+taskly-frontend/ ├── src/ │ ├── components/ │ ├── pages/ │ ├── context/ │ └── App.tsx ├── .env ├── package.json └── vite.config.ts
+
+

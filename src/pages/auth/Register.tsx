@@ -40,6 +40,10 @@ const Register: React.FC = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     clearError();
     setPasswordError('');
+    if(e.target.value && e.target.value.startsWith(""))
+    {
+      e.target.value=e.target.value.trimStart()
+    }
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -111,7 +115,13 @@ const Register: React.FC = () => {
                 id="name"
                 name="name"
                 value={formData.name}
-                onChange={handleChange}
+                onChange={(e)=>{
+                  if(e.target.value.startsWith(" "))
+                  {
+                    e.target.value=e.target.value.trimStart()
+                  }
+                  handleChange(e)
+                }}
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
                 placeholder="Enter your full name"
@@ -127,7 +137,13 @@ const Register: React.FC = () => {
                 id="email"
                 name="email"
                 value={formData.email}
-                onChange={handleChange}
+               onChange={(e)=>{
+                  if(e.target.value.startsWith(" "))
+                  {
+                    e.target.value=e.target.value.trimStart()
+                  }
+                  handleChange(e)
+                }}
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
                 placeholder="Enter your email"
