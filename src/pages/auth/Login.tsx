@@ -17,13 +17,18 @@ const Login: React.FC = () => {
     return <Navigate to="/dashboard" />;
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement| HTMLSelectElement>) => {
-    clearError();
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  clearError();
+  
+  if (e.target.name === 'email' && e.target.value && e.target.value.startsWith(' ')) {
+    e.target.value = e.target.value.trimStart();
+  }
+  
+  setFormData({
+    ...formData,
+    [e.target.name]: e.target.value,
+  });
+};
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

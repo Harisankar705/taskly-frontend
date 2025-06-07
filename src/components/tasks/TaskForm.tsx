@@ -58,10 +58,17 @@ const TaskForm: React.FC<TaskFormProps> = ({ selectedDate, task, onClose, onSave
     }
   }, [task]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
+ const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const { name, value } = e.target;
+  
+  if (name === 'taskName' || name === 'description') {
+    if (value && value.startsWith(' ')) {
+      e.target.value = value.trimStart();
+    }
+  }
+  
+  setFormData(prev => ({ ...prev, [name]: e.target.value }));
+};
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
